@@ -6,7 +6,7 @@ The Github Classroom link for your starter code is here:
 
 The full assignment specification is here:
 
-[./description.pdf](description.pdf)
+[description.pdf](./description.pdf)
 
 There is a short video here that walks through some of the tools you'll use:
 
