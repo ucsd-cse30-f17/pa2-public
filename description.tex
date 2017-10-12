@@ -2,7 +2,7 @@
 \def\r#1{\texttt{r#1}}
 \begin{document}
 
-\section{PA2}
+\section{PA2: Encrypt and Decrypt with Loops and Bitwise Operations}
 
 In this assignment, you will write a few more programs in ARM assembly 
 language by using the branching and control-flow instructions that you 
@@ -103,6 +103,34 @@ the encrypted character to return in \r{0}. We'll also refer to this encrypted
 character in the key update below.
 \end{enumerate}
 
+For example, let's use {\tt 0x42} as the input character, and 
+{\tt 0x4849} as the input key. In binary, the key would be {\tt 0100 1000 
+0100 1001}. The leftmost bit is a 0, so you would use the right byte of the 
+key. First, you'll need to AND the right half with {\tt 0x1F}:
+\begin{center}
+  \begin{tabular}{lll}
+    original: & 0 1 0 0 & 1 0 0 1 \\
+    0x1F: & 0 0 0 1 & 1 1 1 1 \\
+    \hline \\
+    AND result: & 0 0 0 0 & 1 0 0 1 \\
+  \end{tabular}
+\end{center}
+
+Although the original is still unchanged, the half key we are using now holds
+the value {\tt 0x09}. Notice how, by using {\tt 0x1F}, the left half byte has 
+changed to have a value of {\tt 0x0}, and the right half byte is unchanged. 
+Next, EOR the new key with the input character, {\tt 0x42}.
+\begin{center}
+  \begin{tabular}{lll}
+    key: & 0 0 0 0 & 1 0 0 1 \\
+    character: & 0 1 0 0 & 0 0 1 0 \\
+    \hline \\
+    EOR result: & 0 1 0 0 & 1 0 1 1 \\
+  \end{tabular}
+\end{center}
+
+You would end up with {\tt 0x4B} as your newly encrypted character.\newline
+
 
 After encrypting the character, the key needs to be updated using the 
 following steps:
@@ -125,6 +153,25 @@ character as the $n$ value.
 15, the highest bit in the 2-byte key). By reverse we mean if it was 1, it becomes 
 0, and vice versa.
 \end{enumerate}
+
+Continuing from the previous example, we have an encrypted character 
+{\tt 0x4B} which originally held the value of {\tt 0x42}, and a key 
+{\tt 0x4849}. So, in order to update the key, it would go through this 
+process:
+\begin{verbatim}
+0x4849 * 4 = 74020
+74020 + 10 = 74030
+74030 / 2 = 37015
+37015 - 0x42 (66) = 36949
+36949 converted to hexadecimal is 0x9055
+0x9055 in binary is 1001 0000 0101 0101
+As it only takes up two bytes, no shift is required
+Flipping the MSB gives 0x1055
+\end{verbatim}
+
+After this completes, the $n$ value would be {\tt 0xA}, and the new key 
+would be {\tt 0x1055}.
+
 
 At this point, you'll have the encrypted character in \r{0}, and the updated
 key in \r{1}.
