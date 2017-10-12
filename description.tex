@@ -209,16 +209,16 @@ hand first, and know the expected hex values for.
 \subsection{Decryption}
 
 You should also write a decryption algorithm that inverts the process in the
-file \texttt{decrypt.s}. Be sure to also reverse the check against $\#0x7F$ 
+file \texttt{decrypt.s}. Be sure to also reverse the check against {\tt 0x7F} 
 from the encryption algorithm in order to return the character to its original
 state. The following commands will build and test decryption:
 
 \begin{verbatim}
-$ make encrypt.bin
+$ make decrypt.bin
 \end{verbatim}
 
 \begin{verbatim}
-$ pa2-runner encrypt.bin encrypt <key> <input-file> <output-file>
+$ pa2-runner decrypt.bin decrypt <key> <input-file> <output-file>
 \end{verbatim}
 
 If your encryption algorithm works as expected, you can test the decryption by
@@ -227,7 +227,7 @@ using the encrypted file as input to see if you get the original text back.
 \section{README}
 
 In addition to your code, please include a README file which contains your
-answers to the following questions:
+answers to the following question:
 
 The encryption and decryption algorithms are similar, though parts are
 reversed. Identify one common piece of code across your implementations, and
