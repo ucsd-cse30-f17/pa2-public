@@ -121,8 +121,9 @@ character as the $n$ value.
 \item Subtract the original input character, which you saved at the start.
 \item Shift the register logically right until there are only two bytes left
 (the upper half word is zero).
-\item Reverse the value of the most significant bit. (If it was 1, it becomes 
-0, and vice versa.)
+\item Reverse the value of the most significant bit of the key (that is, bit
+15, the highest bit in the 2-byte key). By reverse we mean if it was 1, it becomes 
+0, and vice versa.
 \end{enumerate}
 
 At this point, you'll have the encrypted character in \r{0}, and the updated
@@ -135,8 +136,10 @@ $ make encrypt.bin
 \end{verbatim}
 
 \begin{verbatim}
-$ pa2-runner encrypt.bin encrypt <input-file> <output-file>
+$ pa2-runner encrypt.bin encrypt <key> <input-file> <output-file>
 \end{verbatim}
+
+Where {\tt <key>} is any two ASCII characters.
 
 You should not write {\tt <input-file>} and {\tt <output-file>} exactly, but
 instead use real filenames. We recommend making some simple text files
@@ -145,7 +148,7 @@ file named {\tt hello.txt}, save the contents {\tt Hello!} into it, and then
 run:
 
 \begin{verbatim}
-$ pa2-runner encrypt.bin encrypt hello.txt hello-encrypted.txt
+$ pa2-runner encrypt.bin encrypt ke hello.txt hello-encrypted.txt
 \end{verbatim}
 
 After running the command, the runner will place the encrypted text in the
@@ -173,7 +176,7 @@ $ make encrypt.bin
 \end{verbatim}
 
 \begin{verbatim}
-$ pa2-runner encrypt.bin encrypt <input-file> <output-file>
+$ pa2-runner encrypt.bin encrypt <key> <input-file> <output-file>
 \end{verbatim}
 
 If your encryption algorithm works as expected, you can test the decryption by
