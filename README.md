@@ -9,7 +9,7 @@ either ieng6 or the pi-cluster.
 
 ```
 $ echo "alias pa2-runner='/home/linux/ieng6/cs30f/public/pa2-runner'" >> ~/.bash_profile
-echo "alias pa2-debug='/home/linux/ieng6/cs30f/public/pa2-debug'" >> ~/.bash_profile
+$ echo "alias pa2-debug='/home/linux/ieng6/cs30f/public/pa2-debug'" >> ~/.bash_profile
 
 $ source ~/.bash_profile
 ```
