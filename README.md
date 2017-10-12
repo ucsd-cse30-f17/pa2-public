@@ -2,7 +2,7 @@
 
 The Github Classroom link for your starter code is here:
 
-<link>
+https://classroom.github.com/a/nZa8iUAP
 
 The full assignment specification is here:
 
