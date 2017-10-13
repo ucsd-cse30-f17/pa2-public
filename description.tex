@@ -147,8 +147,8 @@ character as the $n$ value.
 \item Add $n$.
 \item Divide by 2.
 \item Subtract the original input character, which you saved at the start.
-\item Shift the register logically right until there are only two bytes left
-(the upper half word is zero).
+\item If the value is bigger than 2 bytes, shift the register logically 
+right until there are only two bytes left (the upper half word is zero).
 \item Reverse the value of the most significant bit of the key (that is, bit
 15, the highest bit in the 2-byte key). By reverse we mean if it was 1, it becomes 
 0, and vice versa.
@@ -160,7 +160,7 @@ Continuing from the previous example, we have an encrypted character
 process:
 \begin{verbatim}
 0x4849 * 4 = 74020
-74020 + 10 = 74030
+74020 + 7 = 74030
 74030 / 2 = 37015
 37015 - 0x42 (66) = 36949
 36949 converted to hexadecimal is 0x9055
@@ -169,7 +169,7 @@ As it only takes up two bytes, no shift is required
 Flipping the MSB gives 0x1055
 \end{verbatim}
 
-After this completes, the $n$ value would be {\tt 0xA}, and the new key 
+After this completes, the $n$ value would be {\tt 0x7}, and the new key 
 would be {\tt 0x1055}.
 
 
