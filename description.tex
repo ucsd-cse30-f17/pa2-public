@@ -137,8 +137,8 @@ following steps:
 
 \begin{enumerate} \item The new key will use an integer $n$ such that the 
 encrypted character modulo $n$ is equal to 5. In other words, you'll need 
-to find a value for $n$ that will get a remainder of 5 when dividing the
-character.
+to find the smallest possible value for $n$ that will get a remainder of 5 
+when dividing the character. 
 
 Note that, if the newly encrypted character has a value less than 11, there
 is no $n$ value that satisfies the condition; in this case, use the encrypted
@@ -148,7 +148,7 @@ character as the $n$ value.
 \item Divide by 2.
 \item Subtract the original input character, which you saved at the start.
 \item If the value is bigger than 2 bytes, shift the register logically 
-right until there are only two bytes left (the upper half word is zero).
+right until there are only 2 bytes left (the upper half word is zero).
 \item Reverse the value of the most significant bit of the key (that is, bit
 15, the highest bit in the 2-byte key). By reverse we mean if it was 1, it becomes 
 0, and vice versa.
@@ -160,17 +160,17 @@ Continuing from the previous example, we have an encrypted character
 process:
 \begin{verbatim}
 0x4849 * 4 = 74020
-74020 + 7 = 74030
-74030 / 2 = 37015
-37015 - 0x42 (66) = 36949
-36949 converted to hexadecimal is 0x9055
-0x9055 in binary is 1001 0000 0101 0101
+74020 + 7 = 74027
+74027 / 2 = 37013
+37015 - 0x42 (66) = 36947
+36947 converted to hexadecimal is 0x9053
+0x9053 in binary is 1001 0000 0101 0011
 As it only takes up two bytes, no shift is required
-Flipping the MSB gives 0x1055
+Flipping the MSB gives 0x1053
 \end{verbatim}
 
 After this completes, the $n$ value would be {\tt 0x7}, and the new key 
-would be {\tt 0x1055}.
+would be {\tt 0x1053}.
 
 
 At this point, you'll have the encrypted character in \r{0}, and the updated
