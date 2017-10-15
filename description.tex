@@ -209,9 +209,10 @@ hand first, and know the expected hex values for.
 \subsection{Decryption}
 
 You should also write a decryption algorithm that inverts the process in the
-file \texttt{decrypt.s}. Be sure to also reverse the check against {\tt 0x7F} 
+file \texttt{decrypt.s}. Be sure to also reverse the check against {\tt 0x1F} 
 from the encryption algorithm in order to return the character to its original
-state. The following commands will build and test decryption:
+state, and note that the decryption will use the same key as the encryption. 
+The following commands will build and test decryption:
 
 \begin{verbatim}
 $ make decrypt.bin
@@ -222,7 +223,17 @@ $ pa2-runner decrypt.bin decrypt <key> <input-file> <output-file>
 \end{verbatim}
 
 If your encryption algorithm works as expected, you can test the decryption by
-using the encrypted file as input to see if you get the original text back.
+using an encrypted file as input to see if you get the original text back. In
+addition, we've also added three sets of files that you can test your code 
+against, which all use the key {\tt CS}. The files named {\tt orig\#.txt} are 
+the original text inputs, and the files named {\tt encr\#.txt} are the 
+encrypted text outputs corresponding to the same number. You can use these to 
+test either algorithm, as you know what to expect the output to be. To copy 
+the files to your own directory, enter the following command:
+
+\begin{verbatim}
+$ cp /home/linux/ieng6/cs30f/public/*.txt .
+\end{verbatim}
 
 \section{README}
 
